@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Menu have {{ dish_count }} dishes now</h1>
+  <div>
+    {% for dish in dish_all_info %}
+      <tr>
+        <br>
+        <td>
+          {{ dish.name }}
+        </td>
+        <td>
+          {{ dish.price }}
+        </td>
+        {{ dish.dish_type }}
+      </tr>
+    {% endfor %}
+  </div>
+{% endblock %}

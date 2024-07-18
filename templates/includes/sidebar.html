@@ -1,0 +1,17 @@
+<ul>
+  <li>
+    <a href="#">Log in</a>
+  </li>
+  <br>
+  <li>
+    <a href="#">Log out</a>
+  </li>
+</ul>
+<ul class="sidebar-nav">
+  <li><a href="{% url 'kitcher:index'  %}">Home page</a></li>
+  <li><a href="{% url 'kitcher:menu' %}">Menu</a></li>
+  {% if user.is_superuser %}
+    <li><a href="#">Staff</a></li>
+  {% endif %}
+  <li><a href="#">Reservation</a></li>
+</ul>
