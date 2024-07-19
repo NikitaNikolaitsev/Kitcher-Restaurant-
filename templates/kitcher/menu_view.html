@@ -1,21 +1,36 @@
 {% extends "base.html" %}
+
 {% block content %}
-  <h1>Menu have {{ dish_count }} dishes now</h1>
-  <div>
-  {% if user.is_superuser %}
-    <a href="#">add new dish</a>
-  {% endif %}
-    {% for dish in dish_all_info %}
-      <tr>
-        <br>
-        <td>
-          {{ dish.name }}
-        </td>
-        <td>
-          {{ dish.price }}
-        </td>
-        {{ dish.dish_type }}
-      </tr>
-    {% endfor %}
+  <div class="container">
+    <h1>Menu - {{ dish_count }} Dishes Available</h1>
+
+    {% if user.is_superuser %}
+      <div class="text-right">
+        <a href="{% url 'kitcher:create-menu' %}" class="btn btn-primary">Add New Dish</a>
+      </div>
+    {% endif %}
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for dish in dish_all_info %}
+          <tr>
+            <td><a href="{{ dish.get_absolute_url }}">{{ dish.name }}</a></td>
+            <td>{{ dish.price }}$</td>
+            <td>{{ dish.dish_type }}</td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="3">No dishes available.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
 {% endblock %}

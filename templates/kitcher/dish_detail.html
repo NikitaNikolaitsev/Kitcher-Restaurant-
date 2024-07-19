@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container">
+    <h1>{{ dish.name }}</h1>
+    <div class="dish-details">
+      <p><strong>Description:</strong> {{ dish.description }}</p>
+      <p><strong>Price:</strong> ${{ dish.price }}</p>
+      <p><strong>Type:</strong> {{ dish.dish_type }}</p>
+    </div>
+
+    {% if user.is_superuser %}
+      <div class="admin-actions">
+        <a href="{% url 'kitcher:update-menu' dish.pk %}" class="btn btn-primary">Update</a>
+        <a href="{% url 'kitcher:delete-menu' dish.pk %}" class="btn btn-danger">Delete</a>
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}

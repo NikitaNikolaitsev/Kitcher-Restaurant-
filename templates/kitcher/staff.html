@@ -1,17 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Staff Kitcher Restaurant</h1>
+  <div class="container">
+    <h1>Staff of Kitcher Restaurant</h1>
 
-  {% for job_title, cooks in cooks_by_job_title.items %}
-    <h2>{{ job_title }}</h2>
-    <ul>
-      {% for cook in cooks %}
-        <li>{{ cook.first_name }} {{ cook.last_name }}</li>
-      {% empty %}
-        <li>No cooks for this position.</li>
-      {% endfor %}
-    </ul>
-  {% endfor %}
-
+    {% for job_title, cooks in cooks_by_job_title.items %}
+      <div class="job-title-section">
+        <h2>{{ job_title }}</h2>
+        <ul class="list-group">
+          {% for cook in cooks %}
+            <li class="list-group-item">
+              <td><a href="{{ cook.get_absolute_url }}">{{ cook.first_name }} {{ cook.last_name }}</a></td>
+            </li>
+          {% empty %}
+            <li class="list-group-item">No cooks for this position.</li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}
+  </div>
 {% endblock %}

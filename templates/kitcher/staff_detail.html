@@ -1,10 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container">
+    <h1>{{ cook.first_name }} {{ cook.last_name }}</h1>
+    <p><strong>Phone:</strong> {{ cook.phone }}</p>
+    <p><strong>Address:</strong> {{ cook.address }}</p>
+    <p><strong>Years of Experience:</strong> {{ cook.year_of_experience }}</p>
+    <p><strong>Job Title:</strong> {{ cook.job_title }}</p>
+
+    <h2>Dishes Prepared:</h2>
+    {% if dishes %}
+      <ul>
+        {% for dish in dishes %}
+          <li>
+            <a href="{{ dish.get_absolute_url }}">{{ dish.name }}</a> - {{ dish.price }}$
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No dishes prepared by this cook.</p>
+    {% endif %}
+    <a href="{% url 'kitcher:staff-update' cook.pk %}" class="btn btn-primary">Edit</a>
+    <a href="{% url 'kitcher:staff-delete' cook.pk %}" class="btn btn-danger">Delete</a>
+    <a href="{% url 'kitcher:staff' %}" class="btn btn-secondary">Back to List</a>
+  </div>
+
+{% endblock %}

@@ -1,5 +1,3 @@
-from django.contrib.auth import login
-from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -60,3 +58,70 @@ class StaffBaseView(LoginRequiredMixin, generic.ListView):
             cooks_by_job_title[cook.job_title].append(cook)
         context["cooks_by_job_title"] = cooks_by_job_title
         return context
+
+
+"""
+MENU START VIEW
+"""
+
+
+class MenuCreateView(LoginRequiredMixin, generic.edit.CreateView):
+    model = Dish
+    fields = "__all__"
+    success_url = reverse_lazy("kitcherapp:dish-add")
+    template_name = "kitcher/menu_create.html"
+
+
+class MenuUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Dish
+    fields = "__all__"
+    success_url = reverse_lazy("kitcherapp:dish-add")
+    template_name = "kitcher/menu_create.html"
+
+
+class MenuDeleteView(LoginRequiredMixin, generic.edit.DeleteView):
+    model = Dish
+    success_url = reverse_lazy("kitcherapp:dish-add")
+    template_name = "kitcher/menu_delete.html"
+
+
+class DishDetailView(generic.DetailView):
+    model = Dish
+    queryset = Dish.objects.all().prefetch_related("cooks")
+    template_name = 'kitcher/dish_detail.html'
+
+
+"""
+STAFF START VIEW
+"""
+
+
+class StaffDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Cook
+    template_name = 'kitcher/staff_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(StaffDetailView, self).get_context_data(**kwargs)
+        cook = self.get_object()
+        context['dishes'] = Dish.objects.filter(cooks=cook)
+        return context
+
+
+class StaffCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Cook
+    queryset = Cook.objects.all().prefetch_related("cooks")
+    template_name = 'kitcher/staff_create.html'
+    success_url = reverse_lazy("kitcherapp:staff-add")
+
+
+class StaffUpdateView(LoginRequiredMixin, generic.edit.UpdateView):
+    model = Cook
+    fields = "__all__"
+    success_url = reverse_lazy("kitcherapp:staff-add")
+    template_name = "kitcher/staff_create.html"
+
+
+class StaffDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Cook
+    success_url = reverse_lazy("kitcherapp:staff-add")
+    template_name = "kitcher/staff_delete.html"
