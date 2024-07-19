@@ -20,9 +20,9 @@
     {% else %}
       <p>No dishes prepared by this cook.</p>
     {% endif %}
-    <a href="{% url 'kitcher:staff-update' cook.pk %}" class="btn btn-primary">Edit</a>
-    <a href="{% url 'kitcher:staff-delete' cook.pk %}" class="btn btn-danger">Delete</a>
-    <a href="{% url 'kitcher:staff' %}" class="btn btn-secondary">Back to List</a>
+    <a href="{% url 'kitcherapp:staff-update' cook.pk %}" class="btn btn-primary">Edit</a>
+    <a href="{% url 'kitcherapp:staff-delete' cook.pk %}" class="btn btn-danger">Dismiss</a>
+    <a href="{% url 'kitcherapp:staff' %}" class="btn btn-secondary">Back to List</a>
   </div>
 
 {% endblock %}
