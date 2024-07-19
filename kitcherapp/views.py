@@ -45,6 +45,7 @@ class MenuView(generic.ListView):
     model = Dish
     template_name = "kitcher/menu/menu_view.html"
     context_object_name = "dishes"
+    paginate_by = 10
 
     def get_context_data(self, **kwargs):
         context = super(MenuView, self).get_context_data(**kwargs)
