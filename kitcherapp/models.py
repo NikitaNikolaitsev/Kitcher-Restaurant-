@@ -34,6 +34,9 @@ class Dish(models.Model):
     dish_type = models.ForeignKey(DishType, on_delete=models.CASCADE)
     cooks = models.ManyToManyField(Cook, blank=True, related_name="dishes")
 
+    class Meta:
+        ordering = ("dish_type",)
+
     def __str__(self):
         return self.name
 

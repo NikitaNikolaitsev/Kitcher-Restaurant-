@@ -10,27 +10,22 @@
       </div>
     {% endif %}
 
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Price</th>
-          <th>Type</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for dish in dish_all_info %}
-          <tr>
-            <td><a href="{{ dish.get_absolute_url }}">{{ dish.name }}</a></td>
-            <td>{{ dish.price }}$</td>
-            <td>{{ dish.dish_type }}</td>
-          </tr>
-        {% empty %}
-          <tr>
-            <td colspan="3">No dishes available.</td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+    <div class="row">
+      {% for dish in dish_all_info %}
+        <div class="col-md-6 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><a href="{{ dish.get_absolute_url }}">{{ dish.name }}</a></h5>
+              <p class="card-text">Price: {{ dish.price }}$</p>
+              <p class="card-text">Type: {{ dish.dish_type }}</p>
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <div class="col-12">
+          <p>No dishes available.</p>
+        </div>
+      {% endfor %}
+    </div>
   </div>
 {% endblock %}
