@@ -2,6 +2,9 @@
 {% block content %}
   <h1>Menu have {{ dish_count }} dishes now</h1>
   <div>
+  {% if user.is_superuser %}
+    <a href="#">add new dish</a>
+  {% endif %}
     {% for dish in dish_all_info %}
       <tr>
         <br>

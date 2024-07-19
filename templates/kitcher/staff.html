@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Staff Kitcher Restaurant</h1>
+
+  {% for job_title, cooks in cooks_by_job_title.items %}
+    <h2>{{ job_title }}</h2>
+    <ul>
+      {% for cook in cooks %}
+        <li>{{ cook.first_name }} {{ cook.last_name }}</li>
+      {% empty %}
+        <li>No cooks for this position.</li>
+      {% endfor %}
+    </ul>
+  {% endfor %}
+
+{% endblock %}
