@@ -30,6 +30,7 @@ class Cook(AbstractUser):
 
 class DishType(models.Model):
     name = models.CharField(max_length=255, unique=True)
+    job_title = models.ForeignKey(Cook, on_delete=models.CASCADE, related_name='dish_types')
 
     def __str__(self):
         return self.name
