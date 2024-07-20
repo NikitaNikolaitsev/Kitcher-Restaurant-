@@ -4,9 +4,8 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from kitcherapp.forms import RegisterForm
-from kitcherapp.models import Dish, Cook, DishType
-
+from kitcherapp.forms import CookCreateForm
+from kitcherapp.models import Dish, Cook, DishType, Ingredient
 
 # Create your views here.
 
@@ -57,20 +56,20 @@ class MenuView(generic.ListView):
 class MenuCreateView(LoginRequiredMixin, generic.edit.CreateView):
     model = Dish
     fields = "__all__"
-    success_url = reverse_lazy("kitcherapp:dish-add")
+    success_url = reverse_lazy("kitcherapp:dish-create")
     template_name = "kitcher/menu/menu_create.html"
 
 
 class MenuUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Dish
     fields = "__all__"
-    success_url = reverse_lazy("kitcherapp:dish-add")
+    success_url = reverse_lazy("kitcherapp:dish-create")
     template_name = "kitcher/menu/menu_create.html"
 
 
 class MenuDeleteView(LoginRequiredMixin, generic.edit.DeleteView):
     model = Dish
-    success_url = reverse_lazy("kitcherapp:dish-add")
+    success_url = reverse_lazy("kitcherapp:dish-create")
     template_name = "kitcher/menu/menu_delete.html"
 
 
@@ -115,21 +114,21 @@ class StaffDetailView(LoginRequiredMixin, generic.DetailView):
 
 class StaffCreateView(LoginRequiredMixin, generic.CreateView):
     model = Cook
-    fields = "__all__"
+    form_class = CookCreateForm
     template_name = 'kitcher/staff/staff_create.html'
     success_url = reverse_lazy("kitcherapp:staff-create")
 
 
 class StaffUpdateView(LoginRequiredMixin, generic.edit.UpdateView):
     model = Cook
-    fields = "__all__"
+    form_class = CookCreateForm
     success_url = reverse_lazy("kitcherapp:staff-create")
     template_name = "kitcher/staff/staff_create.html"
 
 
 class StaffDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Cook
-    success_url = reverse_lazy("kitcherapp:staff-add")
+    success_url = reverse_lazy("kitcherapp:staff-create")
     template_name = "kitcher/staff/staff_delete.html"
 
 
@@ -156,3 +155,19 @@ class DishTypeDeleteView(LoginRequiredMixin, generic.edit.DeleteView):
     model = DishType
     success_url = reverse_lazy("kitcherapp:create-menu")
     template_name = "kitcher/dish_type/dish_type_delete.html"
+
+
+class IngredientCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Ingredient
+    fields = "__all__"
+    success_url = reverse_lazy("kitcherapp:create-menu")
+    template_name = "kitcher/menu/ingredient_create.html"
+
+
+class IngredientUpdateView(LoginRequiredMixin, generic.edit.UpdateView):
+    model = Ingredient
+    fields = "__all__"
+    success_url = reverse_lazy("kitcherapp:create-menu")
+    template_name = "kitcher/menu/ingredient_create.html"
+
+

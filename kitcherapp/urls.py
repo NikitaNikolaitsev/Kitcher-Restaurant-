@@ -1,15 +1,29 @@
 from django.urls import path
-from kitcherapp.views import index, MenuView, StaffBaseView, MenuUpdateView, MenuDeleteView, MenuCreateView, \
-    DishDetailView, StaffDetailView, StaffUpdateView, StaffDeleteView, StaffCreateView, DishTypeCreateView, \
-    DishTypeUpdateView, DishTypeDeleteView
+from kitcherapp.views import (
+    index,
+    MenuView,
+    MenuUpdateView,
+    MenuDeleteView,
+    MenuCreateView,
+    StaffBaseView,
+    StaffDetailView,
+    StaffUpdateView,
+    StaffDeleteView,
+    StaffCreateView,
+    DishTypeCreateView,
+    DishTypeUpdateView,
+    DishTypeDeleteView,
+    DishDetailView,
+    IngredientUpdateView,
+    IngredientCreateView
+)
 
 urlpatterns = [
     path("", index, name="index"),
 
     path("menu/", MenuView.as_view(), name="menu"),
-    path(
-        "menu/create", MenuCreateView.as_view(), name="create-menu"
-    ),
+
+    path('menu/create', MenuCreateView.as_view(), name='dish-create'),
     path(
         "menu/<int:pk>/update", MenuUpdateView.as_view(), name="update-menu"
     ),
@@ -42,6 +56,13 @@ urlpatterns = [
     ),
     path(
         'dishtype/<int:pk>/delete', DishTypeDeleteView.as_view(), name='dishtype-delete'
+    ),
+
+    path(
+        "ingredient/create", IngredientCreateView.as_view(), name="ingredient-create"
+    ),
+    path(
+        "ingredient/<int:pk>/update", IngredientUpdateView.as_view(), name="ingredient-update"
     ),
 ]
 

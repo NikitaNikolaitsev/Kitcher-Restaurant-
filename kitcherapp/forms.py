@@ -16,14 +16,14 @@ def validate_name(name: str, name_type: str = "name"):
 
 
 def validate_years_of_experience(years: int):
-    if years < 0:
-        raise ValidationError("Years of experience must be a positive number")
+    if years < 0 or years > 100:
+        raise ValidationError("Please enter valid years")
 
 
 class CookCreateForm(UserCreationForm):
     class Meta:
         model = Cook
-        fields = ("first_name", "last_name", "years_of_experience", "phone", "address")
+        fields = ("first_name", "last_name", "year_of_experience", "job_title", "address", "phone")
 
     def clean_first_name(self):
         first_name = self.cleaned_data.get("first_name")
@@ -36,6 +36,6 @@ class CookCreateForm(UserCreationForm):
         return last_name
 
     def clean_years_of_experience(self):
-        years_of_experience = self.cleaned_data.get("years_of_experience")
+        years_of_experience = self.cleaned_data.get("year_of_experience")
         validate_years_of_experience(years_of_experience)
         return years_of_experience

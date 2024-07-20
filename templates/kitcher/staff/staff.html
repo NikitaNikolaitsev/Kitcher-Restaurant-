@@ -11,14 +11,14 @@
     <div class="job-titles-container">
         {% for job_title, cooks in cooks_by_job_title.items %}
         <div class="job-title-section">
-            <h2>{{ job_title }}</h2>
-            <ul class="list-group">
+            <h2 class="job-title">{{ job_title }}</h2>
+            <ul class="cooks-list">
                 {% for cook in cooks %}
-                <li class="list-group-item">
+                <li class="cooks-item">
                     <a href="{{ cook.get_absolute_url }}">{{ cook.first_name }} {{ cook.last_name }}</a>
                 </li>
                 {% empty %}
-                <li class="list-group-item">No cooks for this position.</li>
+                <li class="cooks-item">No cooks for this position.</li>
                 {% endfor %}
             </ul>
         </div>

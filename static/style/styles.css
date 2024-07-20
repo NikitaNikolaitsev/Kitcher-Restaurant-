@@ -1,32 +1,153 @@
-.job-titles-container  {
+:root {
+    --primary-color: #6a4e42;
+    --secondary-color: #b1a6a2;
+    --accent-color: #d4af37;
+    --text-color: #333;
+    --background-color: #f8f9fa;
+}
+.username {
+    color: #fffff;
+}
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--primary-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.sidebar {
+    background-color: var(--secondary-color);
+    padding: 20px;
+    border-right: 1px solid #ddd;
+    min-height: 100vh;
+}
+
+.sidebar a {
+    color: var(--primary-color);
+}
+
+.sidebar a:hover {
+    color: var(--accent-color);
+}
+
+.user-info, .sidebar-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.user-info li, .sidebar-nav li {
+    margin: 10px 0;
+}
+
+.user-info li a, .sidebar-nav li a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.user-info li a:hover, .sidebar-nav li a:hover {
+    text-decoration: underline;
+}
+
+.card, .list-group-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.list-group-item.active {
+    background-color: var(--background-color);
+    color: #fff;
+}
+
+.list-group-item a {
+    color: var(--primary-color);
+}
+
+.list-group-item a:hover {
+    text-decoration: underline;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    background-color: #fff;
+    border-collapse: collapse;
+}
+
+.table thead th {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+.table tbody tr:hover {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+.job-titles-container, .menu-container {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
 }
 
-.job-title-section  {
+.job-title-section, .menu-item {
     flex: 1 1 calc(50% - 20px);
     box-sizing: border-box;
 }
-.row {
-  display: flex;
-  flex-wrap: wrap;
+
+.job-title, .menu-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
 }
 
-.col-md-6 {
-  flex: 0 0 50%;
-  max-width: 50%;
+.cooks-list, .menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cooks-item, .menu-item {
+    margin-bottom: 5px;
+}
+
+.cooks-item a, .menu-item a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.cooks-item a:hover, .menu-item a:hover {
+    text-decoration: underline;
+}
+
+.text-right {
+    text-align: right;
 }
 
 .mb-3 {
-  margin-bottom: 1rem;
+    margin-bottom: 1rem;
 }
-
-.card {
-  border: 1px solid #ddd;
-  border-radius: 0.25rem;
-}
-
-.card-body {
-  padding: 1rem;
+.btn-primary {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--text-color);
+    background-color: var(--background-color);
 }
