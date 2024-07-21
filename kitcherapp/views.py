@@ -69,7 +69,7 @@ class MenuUpdateView(LoginRequiredMixin, generic.UpdateView):
 
 class MenuDeleteView(LoginRequiredMixin, generic.edit.DeleteView):
     model = Dish
-    success_url = reverse_lazy("kitcherapp:dish-create")
+    success_url = reverse_lazy("kitcherapp:menu")
     template_name = "kitcher/menu/menu_delete.html"
 
 
@@ -169,5 +169,3 @@ class IngredientUpdateView(LoginRequiredMixin, generic.edit.UpdateView):
     fields = "__all__"
     success_url = reverse_lazy("kitcherapp:create-menu")
     template_name = "kitcher/menu/ingredient_create.html"
-
-

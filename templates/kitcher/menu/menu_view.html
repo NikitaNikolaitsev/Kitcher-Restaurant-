@@ -5,10 +5,10 @@
     <h1 class="mb-4">Menu - {{ dish_count }} Dishes Available</h1>
 
     {% if user.is_superuser %}
-      <div class="d-flex justify-content-end mb-3">
-        <a href="{% url 'kitcher:dishtype-create' %}" class="btn btn-primary mr-2">Add New Dish Type</a>
+      <div class="text-right mb-3">
+        <a href="{% url 'kitcher:dishtype-create' %}" class="btn btn-primary">Add New Dish Type</a>
         <a href="{% url 'kitcher:dish-create' %}" class="btn btn-primary">Add New Dish</a>
-        <a href="{% url 'kitcher:ingredient-create' %}" class="btn btn-primary">Add new ingridient</a>
+        <a href="{% url 'kitcher:ingredient-create' %}" class="btn btn-primary">Add New Ingredient</a>
       </div>
     {% endif %}
 

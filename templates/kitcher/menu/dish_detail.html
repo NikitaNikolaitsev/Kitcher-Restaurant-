@@ -7,7 +7,17 @@
       <p><strong>Description:</strong> {{ dish.description }}</p>
       <p><strong>Price:</strong> ${{ dish.price }}</p>
       <p><strong>Type:</strong> {{ dish.dish_type }}</p>
-      <p><strong>Ingredients</strong><br>{{ dish.ingredients }}</p>
+
+      <p><strong>Ingredients:</strong></p>
+      {% if dish.ingredients.exists %}
+        <ul>
+          {% for ingredient in dish.ingredients.all %}
+            <li>{{ ingredient.name }}</li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>No ingredients listed.</p>
+      {% endif %}
     </div>
 
     {% if user.is_superuser %}
