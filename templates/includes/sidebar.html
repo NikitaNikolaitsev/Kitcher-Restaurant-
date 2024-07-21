@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="sidebar">
+  <div class="sidebar bg-light p-3">
     <ul class="list-group">
       {% if user.is_authenticated %}
         <li class="list-group-item active"><a href="{{ user.get_absolute_url }}" class="username">{{ user.get_username }}</a></li>
@@ -20,9 +20,6 @@
           <a class="nav-link" href="{% url 'kitcher:staff' %}">Staff</a>
         </li>
       {% endif %}
-      <li class="nav-item">
-        <a class="nav-link" href="#">Reservation</a>
-      </li>
     </ul>
   </div>
 </div>

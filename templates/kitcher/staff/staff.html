@@ -2,25 +2,29 @@
 
 {% block content %}
 <div class="container">
-    <h1>Staff of Kitcher Restaurant</h1>
+    <h1 class="text-center">Staff of Kitcher Restaurant</h1>
     {% if user.is_superuser %}
     <div class="text-right mb-3">
         <a href="{% url 'kitcher:staff-create' %}" class="btn btn-primary">Add New Cook</a>
     </div>
     {% endif %}
-    <div class="job-titles-container">
+    <div class="row">
         {% for job_title, cooks in cooks_by_job_title.items %}
-        <div class="job-title-section">
-            <h2 class="job-title">{{ job_title }}</h2>
-            <ul class="cooks-list">
-                {% for cook in cooks %}
-                <li class="cooks-item">
-                    <a href="{{ cook.get_absolute_url }}">{{ cook.first_name }} {{ cook.last_name }}</a>
-                </li>
-                {% empty %}
-                <li class="cooks-item">No cooks for this position.</li>
-                {% endfor %}
-            </ul>
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h2 class="card-title">{{ job_title }}</h2>
+                    <ul class="list-group list-group-flush">
+                        {% for cook in cooks %}
+                        <li class="list-group-item">
+                            <a href="{{ cook.get_absolute_url }}">{{ cook.first_name }} {{ cook.last_name }}</a>
+                        </li>
+                        {% empty %}
+                        <li class="list-group-item">No cooks for this position.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
         </div>
         {% endfor %}
     </div>

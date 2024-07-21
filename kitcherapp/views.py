@@ -1,10 +1,16 @@
-from django.http import HttpResponseRedirect, HttpRequest, HttpResponse
-from django.shortcuts import render, redirect
+from django.http import HttpRequest, HttpResponse
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from kitcherapp.forms import CookCreateForm
+from kitcherapp.forms import (
+    CookCreateForm,
+    DishSearchForm,
+    CookSearchForm,
+    DishForm,
+    DishSearchForm, DishTypeForm,
+)
 from kitcherapp.models import Dish, Cook, DishType, Ingredient
 
 # Create your views here.
@@ -23,21 +29,38 @@ def index(request: HttpRequest) -> HttpResponse:
     return render(request, "kitcher/home_page.html", context=context)
 
 
-def register(request):
-    if request.method == 'POST':
-        form = RegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('login')
-    else:
-        form = RegisterForm()
-
-    return render(request, 'registration/register.html', {'form': form})
-
-
 """
 MENU STARTS VIEW
 """
+
+
+def dish_search_view(request):
+    form = DishSearchForm(request.GET or None)
+    dishes = Dish.objects.all()
+
+    if form.is_valid():
+        name = form.cleaned_data.get('name')
+        if name:
+            dishes = dishes.filter(name__icontains=name)
+
+    return render(request, 'kitcher/dish_search.html', {'form': form, 'dishes': dishes})
+
+
+def dish_list_view(request):
+    form = DishSearchForm(request.GET or None)
+    dishes = Dish.objects.all()
+
+    if form.is_valid():
+        query = form.cleaned_data.get('query')
+
+        if query:
+            dishes = dishes.filter(
+                name__icontains=query
+            ) | dishes.filter(
+                dish_type__name__icontains=query
+            )
+
+    return render(request, 'kitcher/dish_list.html', {'form': form, 'dishes': dishes})
 
 
 class MenuView(generic.ListView):
@@ -55,6 +78,7 @@ class MenuView(generic.ListView):
 
 class MenuCreateView(LoginRequiredMixin, generic.edit.CreateView):
     model = Dish
+    form_class = DishForm
     fields = "__all__"
     success_url = reverse_lazy("kitcherapp:dish-create")
     template_name = "kitcher/menu/menu_create.html"
@@ -82,6 +106,28 @@ class DishDetailView(generic.DetailView):
 """
 STAFF START VIEW
 """
+
+
+def cook_search_view(request):
+    form = CookSearchForm(request.GET or None)
+    cooks = Cook.objects.all()
+
+    if form.is_valid():
+        first_name = form.cleaned_data.get('first_name')
+        last_name = form.cleaned_data.get('last_name')
+        username = form.cleaned_data.get('username')
+        years_of_experience = form.cleaned_data.get('years_of_experience')
+
+        if first_name:
+            cooks = cooks.filter(first_name__icontains=first_name)
+        if last_name:
+            cooks = cooks.filter(last_name__icontains=last_name)
+        if username:
+            cooks = cooks.filter(username__icontains=username)
+        if years_of_experience is not None:
+            cooks = cooks.filter(year_of_experience=years_of_experience)
+
+    return render(request, 'kitcher/cook_search.html', {'form': form, 'cooks': cooks})
 
 
 class StaffBaseView(LoginRequiredMixin, generic.ListView):
@@ -139,6 +185,7 @@ DishTypE START VIEW
 
 class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
     model = DishType
+    form = DishTypeForm
     fields = ['name']
     template_name = "kitcher/dish_type/dish_type_create.html"
     success_url = reverse_lazy("kitcherapp:create-menu")

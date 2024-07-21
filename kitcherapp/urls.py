@@ -1,4 +1,6 @@
 from django.urls import path
+
+from kitcherapp import views
 from kitcherapp.views import (
     index,
     MenuView,
