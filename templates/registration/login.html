@@ -2,29 +2,37 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+  <div class="login-form">
+    {% if form.errors %}
+      <div class="alert alert-danger" role="alert">
+        Your username and password didn't match. Please try again.
+      </div>
+    {% endif %}
 
-{% if form.errors %}
-  <p>Your username and password didn't match. Please try again.</p>
-{% endif %}
+    <h1 class="text-center mb-4">Login</h1>
 
-<h1>Login</h1>
+    {% if next %}
+      <div class="alert alert-info" role="alert">
+        Please log in to see this page.
+      </div>
+    {% endif %}
 
-{% if next %}
-  <p>Please log in to see this page.</p>
-{% endif %}
+    <form method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+      {{ form|crispy }}
 
-<form method="post" action="{% url 'login' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
+      <div class="text-center mt-3">
+        <input type="submit" value="Login" class="btn btn-primary" />
+        <input type="hidden" name="next" value="{{ next }}" />
+      </div>
+    </form>
 
-  <input type="submit" value="Login" class="btn btn-primary" />
-  <input type="hidden" name="next" value="{{ next }}" />
-</form>
-  <!--
-  <h2>
-    if you don't have an account <a href="#">register</a> now
-  </h2>
--->
-
-
+    <!--
+    <h2 class="text-center mt-3">
+      If you don't have an account <a href="#">register</a> now
+    </h2>
+    -->
+  </div>
+</div>
 {% endblock %}

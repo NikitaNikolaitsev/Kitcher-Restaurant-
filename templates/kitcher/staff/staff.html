@@ -2,12 +2,20 @@
 
 {% block content %}
 <div class="container">
-    <h1 class="text-center">Staff of Kitcher Restaurant</h1>
-    {% if user.is_superuser %}
-    <div class="text-right mb-3">
-        <a href="{% url 'kitcher:staff-create' %}" class="btn btn-primary">Add New Cook</a>
+    <h1 class="text-center mb-4">Staff of Kitcher Restaurant</h1>
+
+    <div class="text-center mb-4">
+        {% if user.is_superuser %}
+            <a href="{% url 'kitcher:staff-create' %}" class="btn btn-primary mb-3">Add New Cook</a>
+        {% endif %}
+        <div class="d-flex justify-content-center">
+            <form method="get" action="{% url 'kitcher:cook-search' %}" class="d-flex align-items-center">
+                {{ cook_search_form.as_p }}
+                <button type="submit" class="btn btn-primary ml-2">Search</button>
+            </form>
+        </div>
     </div>
-    {% endif %}
+
     <div class="row">
         {% for job_title, cooks in cooks_by_job_title.items %}
         <div class="col-md-6 mb-4">

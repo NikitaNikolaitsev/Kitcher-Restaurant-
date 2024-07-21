@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Dish Search Results</h1>
+    <form method="get" action="{% url 'kitcher:dish-search' %}">
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Search Again</button>
+    </form>
+    <div class="row mt-4">
+        {% for dish in dishes %}
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ dish.name }}</h5>
+                    <p class="card-text">Price: ${{ dish.price }}</p>
+                    <p class="card-text">Type: {{ dish.dish_type }}</p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <p class="text-center">No dishes found.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
