@@ -17,7 +17,7 @@ from kitcherapp.views import (
     DishTypeDeleteView,
     DishDetailView,
     IngredientUpdateView,
-    IngredientCreateView
+    IngredientCreateView,
 )
 
 urlpatterns = [
@@ -66,6 +66,9 @@ urlpatterns = [
     path(
         "ingredient/<int:pk>/update", IngredientUpdateView.as_view(), name="ingredient-update"
     ),
+    path('', views.home, name='home'),
+    path('dish-search/', views.dish_search, name='dish-search'),
+    path('cook-search/', views.cook_search, name='cook-search'),
 ]
 
 app_name = "kitcher"

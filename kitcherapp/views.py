@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -29,21 +30,52 @@ def index(request: HttpRequest) -> HttpResponse:
     return render(request, "kitcher/home_page.html", context=context)
 
 
+def home(request):
+    dish_search_form = DishSearchForm()
+    cook_search_form = CookSearchForm()
+    return render(request, 'home.html', {
+        'dish_search_form': dish_search_form,
+        'cook_search_form': cook_search_form
+    })
+
+
+def dish_search(request):
+    form = DishSearchForm(request.GET)
+    if form.is_valid():
+        name = form.cleaned_data.get('name')
+        min_price = form.cleaned_data.get('min_price')
+        max_price = form.cleaned_data.get('max_price')
+        dishes = Dish.objects.all()
+        if name:
+            dishes = dishes.filter(name__icontains=name)
+        if min_price is not None:
+            dishes = dishes.filter(price__gte=min_price)
+        if max_price is not None:
+            dishes = dishes.filter(price__lte=max_price)
+    else:
+        dishes = Dish.objects.none()
+    return render(request, 'search/dish_search_results.html', {'dishes': dishes, 'form': form})
+
+
+@login_required(login_url='login')
+def cook_search(request):
+    form = CookSearchForm(request.GET)
+    if form.is_valid():
+        name = form.cleaned_data.get('name')
+        job_title = form.cleaned_data.get('job_title')
+        cooks = Cook.objects.all()
+        if name:
+            cooks = cooks.filter(first_name__icontains=name) | cooks.filter(last_name__icontains=name)
+        if job_title:
+            cooks = cooks.filter(job_title__icontains=job_title)
+    else:
+        cooks = Cook.objects.none()
+    return render(request, 'search/cook_search_results.html', {'cooks': cooks, 'form': form})
+
+
 """
 MENU STARTS VIEW
 """
-
-
-def dish_search_view(request):
-    form = DishSearchForm(request.GET or None)
-    dishes = Dish.objects.all()
-
-    if form.is_valid():
-        name = form.cleaned_data.get('name')
-        if name:
-            dishes = dishes.filter(name__icontains=name)
-
-    return render(request, 'kitcher/dish_search.html', {'form': form, 'dishes': dishes})
 
 
 def dish_list_view(request):
@@ -106,28 +138,6 @@ class DishDetailView(generic.DetailView):
 """
 STAFF START VIEW
 """
-
-
-def cook_search_view(request):
-    form = CookSearchForm(request.GET or None)
-    cooks = Cook.objects.all()
-
-    if form.is_valid():
-        first_name = form.cleaned_data.get('first_name')
-        last_name = form.cleaned_data.get('last_name')
-        username = form.cleaned_data.get('username')
-        years_of_experience = form.cleaned_data.get('years_of_experience')
-
-        if first_name:
-            cooks = cooks.filter(first_name__icontains=first_name)
-        if last_name:
-            cooks = cooks.filter(last_name__icontains=last_name)
-        if username:
-            cooks = cooks.filter(username__icontains=username)
-        if years_of_experience is not None:
-            cooks = cooks.filter(year_of_experience=years_of_experience)
-
-    return render(request, 'kitcher/cook_search.html', {'form': form, 'cooks': cooks})
 
 
 class StaffBaseView(LoginRequiredMixin, generic.ListView):

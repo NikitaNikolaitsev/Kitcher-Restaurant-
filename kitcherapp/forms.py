@@ -73,35 +73,11 @@ SEARCH FORMS
 
 
 class DishSearchForm(forms.Form):
-    query = forms.CharField(
-        max_length=255,
-        required=False,
-        label="",
-        widget=forms.TextInput(attrs={"placeholder": "Search by name or type"})
-    )
+    name = forms.CharField(max_length=100, required=False, label='Dish Name')
+    min_price = forms.DecimalField(required=False, decimal_places=2, max_digits=10, label='Min Price')
+    max_price = forms.DecimalField(required=False, decimal_places=2, max_digits=10, label='Max Price')
 
 
 class CookSearchForm(forms.Form):
-    first_name = forms.CharField(
-        max_length=255,
-        required=False,
-        label="",
-        widget=forms.TextInput(attrs={"placeholder": "Search by first name"})
-    )
-    last_name = forms.CharField(
-        max_length=255,
-        required=False,
-        label="",
-        widget=forms.TextInput(attrs={"placeholder": "Search by last name"})
-    )
-    username = forms.CharField(
-        max_length=255,
-        required=False,
-        label="",
-        widget=forms.TextInput(attrs={"placeholder": "Search by username"})
-    )
-    years_of_experience = forms.IntegerField(
-        required=False,
-        label="",
-        widget=forms.NumberInput(attrs={"placeholder": "Search by years of experience"})
-    )
+    name = forms.CharField(max_length=100, required=False, label='Cook Name')
+    job_title = forms.CharField(max_length=100, required=False, label='Job Title')
