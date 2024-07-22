@@ -1,0 +1,705 @@
+[
+    {
+        "model": "kitcherapp.cook",
+        "pk": 1,
+        "fields": {
+            "username": "admin",
+            "password": "123123admin",
+            "phone": "111-111-1111",
+            "address": "Admin Street 1",
+            "year_of_experience": 10,
+            "job_title": "Administrator",
+            "first_name": "Super",
+            "last_name": "User",
+            "email": "admin@example.com",
+            "is_superuser": true,
+            "is_staff": true
+        }
+    },
+    {
+        "model": "kitcherapp.cook",
+        "pk": 2,
+        "fields": {
+            "username": "john_doe",
+            "phone": "123-456-7890",
+            "address": "123 Main St",
+            "year_of_experience": 5,
+            "job_title": "Head Chef",
+            "first_name": "John",
+            "last_name": "Doe",
+            "email": "john@example.com",
+            "is_superuser": false,
+            "is_staff": true
+        }
+    },
+    {
+        "model": "kitcherapp.cook",
+        "pk": 3,
+        "fields": {
+            "username": "jane_smith",
+            "phone": "987-654-3210",
+            "address": "456 Elm St",
+            "year_of_experience": 3,
+            "job_title": "Sous Chef",
+            "first_name": "Jane",
+            "last_name": "Smith",
+            "email": "jane@example.com",
+            "is_superuser": false,
+            "is_staff": true
+        }
+    },
+    {
+        "model": "kitcherapp.cook",
+        "pk": 4,
+        "fields": {
+            "username": "alice_johnson",
+            "phone": "555-555-5555",
+            "address": "789 Oak St",
+            "year_of_experience": 4,
+            "job_title": "Pastry Chef",
+            "first_name": "Alice",
+            "last_name": "Johnson",
+            "email": "alice@example.com",
+            "is_superuser": false,
+            "is_staff": true
+        }
+    },
+    {
+        "model": "kitcherapp.cook",
+        "pk": 5,
+        "fields": {
+            "username": "bob_brown",
+            "phone": "444-444-4444",
+            "address": "101 Pine St",
+            "year_of_experience": 2,
+            "job_title": "Line Cook",
+            "first_name": "Bob",
+            "last_name": "Brown",
+            "email": "bob@example.com",
+            "is_superuser": false,
+            "is_staff": true
+        }
+    },
+    {
+        "model": "kitcherapp.cook",
+        "pk": 6,
+        "fields": {
+            "username": "carol_white",
+            "phone": "222-222-2222",
+            "address": "202 Birch St",
+            "year_of_experience": 1,
+            "job_title": "Prep Cook",
+            "first_name": "Carol",
+            "last_name": "White",
+            "email": "carol@example.com",
+            "is_superuser": false,
+            "is_staff": true
+        }
+    },
+    {
+        "model": "kitcherapp.cook",
+        "pk": 7,
+        "fields": {
+            "username": "dave_martin",
+            "phone": "333-333-3333",
+            "address": "303 Cedar St",
+            "year_of_experience": 6,
+            "job_title": "Grill Cook",
+            "first_name": "Dave",
+            "last_name": "Martin",
+            "email": "dave@example.com",
+            "is_superuser": false,
+            "is_staff": true
+        }
+    },
+    {
+        "model": "kitcherapp.cook",
+        "pk": 8,
+        "fields": {
+            "username": "eve_clark",
+            "phone": "666-666-6666",
+            "address": "404 Spruce St",
+            "year_of_experience": 7,
+            "job_title": "Saute Cook",
+            "first_name": "Eve",
+            "last_name": "Clark",
+            "email": "eve@example.com",
+            "is_superuser": false,
+            "is_staff": true
+        }
+    },
+    {
+        "model": "kitcherapp.cook",
+        "pk": 9,
+        "fields": {
+            "username": "frank_wright",
+            "phone": "777-777-7777",
+            "address": "505 Willow St",
+            "year_of_experience": 3,
+            "job_title": "Fry Cook",
+            "first_name": "Frank",
+            "last_name": "Wright",
+            "email": "frank@example.com",
+            "is_superuser": false,
+            "is_staff": true
+        }
+    },
+    {
+        "model": "kitcherapp.cook",
+        "pk": 10,
+        "fields": {
+            "username": "grace_hall",
+            "phone": "888-888-8888",
+            "address": "606 Maple St",
+            "year_of_experience": 5,
+            "job_title": "Expediter",
+            "first_name": "Grace",
+            "last_name": "Hall",
+            "email": "grace@example.com",
+            "is_superuser": false,
+            "is_staff": true
+        }
+    },
+    {
+        "model": "kitcherapp.dishtype",
+        "pk": 1,
+        "fields": {
+            "name": "Main Course"
+        }
+    },
+    {
+        "model": "kitcherapp.dishtype",
+        "pk": 2,
+        "fields": {
+            "name": "Dessert"
+        }
+    },
+    {
+        "model": "kitcherapp.dish",
+        "pk": 1,
+        "fields": {
+            "name": "Spaghetti Carbonara",
+            "description": "Classic Italian pasta dish with eggs, cheese, pancetta, and pepper.",
+            "price": "12.50",
+            "dish_type": 1,
+            "cooks": [1, 2],
+            "ingredients": [1, 2, 3]
+        }
+    },
+    {
+        "model": "kitcherapp.dish",
+        "pk": 2,
+        "fields": {
+            "name": "Tiramisu",
+            "description": "Delicious coffee-flavored Italian dessert.",
+            "price": "6.75",
+            "dish_type": 2,
+            "cooks": [2],
+            "ingredients": [4, 5]
+        }
+    },
+    {
+        "model": "kitcherapp.dish",
+        "pk": 3,
+        "fields": {
+            "name": "Caesar Salad",
+            "description": "Fresh romaine lettuce with Caesar dressing, croutons, and Parmesan cheese.",
+            "price": "7.25",
+            "dish_type": 1,
+            "cooks": [3, 4],
+            "ingredients": [6, 7, 8]
+        }
+    },
+    {
+        "model": "kitcherapp.dish",
+        "pk": 4,
+        "fields": {
+            "name": "Margherita Pizza",
+            "description": "Classic pizza topped with fresh tomatoes, mozzarella cheese, and basil.",
+            "price": "9.50",
+            "dish_type": 1,
+            "cooks": [4, 5],
+            "ingredients": [9, 10, 11]
+        }
+    },
+    {
+        "model": "kitcherapp.dish",
+        "pk": 5,
+        "fields": {
+            "name": "Chocolate Cake",
+            "description": "Rich and moist chocolate cake with chocolate frosting.",
+            "price": "5.50",
+            "dish_type": 2,
+            "cooks": [6],
+            "ingredients": [12, 13]
+        }
+    },
+    {
+        "model": "kitcherapp.dish",
+        "pk": 6,
+        "fields": {
+            "name": "Grilled Salmon",
+            "description": "Perfectly grilled salmon fillet with a side of vegetables.",
+            "price": "14.75",
+            "dish_type": 1,
+            "cooks": [7, 8],
+            "ingredients": [14, 15]
+        }
+    },
+    {
+        "model": "kitcherapp.dish",
+        "pk": 7,
+        "fields": {
+            "name": "French Fries",
+            "description": "Crispy and golden French fries.",
+            "price": "3.00",
+            "dish_type": 1,
+            "cooks": [9],
+            "ingredients": [16]
+        }
+    },
+    {
+        "model": "kitcherapp.dish",
+        "pk": 8,
+        "fields": {
+            "name": "Apple Pie",
+            "description": "Classic American apple pie with a flaky crust.",
+            "price": "4.50",
+            "dish_type": 2,
+            "cooks": [10],
+            "ingredients": [17, 18]
+        }
+    },
+    {
+        "model": "kitcherapp.dish",
+        "pk": 9,
+        "fields": {
+            "name": "Beef Burger",
+            "description": "Juicy beef burger with lettuce, tomato, and cheese.",
+            "price": "8.50",
+            "dish_type": 1,
+            "cooks": [1, 3],
+            "ingredients": [19, 20, 21]
+        }
+    },
+    {
+        "model": "kitcherapp.dish",
+        "pk": 10,
+        "fields": {
+            "name": "Chicken Alfredo",
+            "description": "Creamy Alfredo pasta with grilled chicken.",
+            "price": "13.25",
+            "dish_type": 1,
+            "cooks": [2, 5],
+            "ingredients": [22, 23]
+        }
+    },
+    {
+        "model": "kitcherapp.dish",
+        "pk": 11,
+        "fields": {
+            "name": "Vegetable Stir-fry",
+            "description": "Mixed vegetables stir-fried with a savory sauce.",
+            "price": "10.00",
+            "dish_type": 1,
+            "cooks": [4, 6],
+            "ingredients": [24, 25]
+        }
+    },
+    {
+        "model": "kitcherapp.dish",
+        "pk": 12,
+        "fields": {
+            "name": "Cheesecake",
+            "description": "Creamy cheesecake with a graham cracker crust.",
+            "price": "5.75",
+            "dish_type": 2,
+            "cooks": [8],
+            "ingredients": [26, 27]
+        }
+    },
+    {
+        "model": "kitcherapp.dish",
+        "pk": 13,
+        "fields": {
+            "name": "Minestrone Soup",
+            "description": "Hearty Italian vegetable soup with pasta.",
+            "price": "6.50",
+            "dish_type": 1,
+            "cooks": [5, 7],
+            "ingredients": [28, 29]
+        }
+    },
+    {
+        "model": "kitcherapp.dish",
+        "pk": 14,
+        "fields": {
+            "name": "Chocolate Mousse",
+            "description": "Light and fluffy chocolate mousse.",
+            "price": "5.00",
+            "dish_type": 2,
+            "cooks": [9],
+            "ingredients": [30, 31]
+        }
+    },
+    {
+        "model": "kitcherapp.dish",
+        "pk": 15,
+        "fields": {
+            "name": "Lobster Bisque",
+            "description": "Rich and creamy lobster soup.",
+            "price": "15.50",
+            "dish_type": 1,
+            "cooks": [10, 1],
+            "ingredients": [32, 33]
+        }
+    },
+    {
+        "model": "kitcherapp.dish",
+        "pk": 16,
+        "fields": {
+            "name": "Panna Cotta",
+            "description": "Italian dessert of sweetened cream thickened with gelatin.",
+            "price": "4.75",
+            "dish_type": 2,
+            "cooks": [2],
+            "ingredients": [34, 35]
+        }
+    },
+    {
+        "model": "kitcherapp.dish",
+        "pk": 17,
+        "fields": {
+            "name": "Shrimp Scampi",
+            "description": "Shrimp cooked in garlic, butter, and white wine sauce.",
+            "price": "14.00",
+            "dish_type": 1,
+            "cooks": [3, 4],
+            "ingredients": [36, 37]
+        }
+    },
+    {
+        "model": "kitcherapp.dish",
+        "pk": 18,
+        "fields": {
+            "name": "Baklava",
+            "description": "Rich, sweet dessert pastry made of layers of filo filled with chopped nuts.",
+            "price": "4.25",
+            "dish_type": 2,
+            "cooks": [5],
+            "ingredients": [38, 39]
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 1,
+        "fields": {
+            "name": "Pasta",
+            "description": "Italian pasta"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 2,
+        "fields": {
+            "name": "Eggs",
+            "description": "Farm fresh eggs"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 3,
+        "fields": {
+            "name": "Pancetta",
+            "description": "Italian bacon"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 4,
+        "fields": {
+            "name": "Coffee",
+            "description": "Brewed espresso"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 5,
+        "fields": {
+            "name": "Mascarpone",
+            "description": "Italian cream cheese"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 6,
+        "fields": {
+            "name": "Romaine Lettuce",
+            "description": "Fresh romaine lettuce"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 7,
+        "fields": {
+            "name": "Caesar Dressing",
+            "description": "Creamy Caesar dressing"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 8,
+        "fields": {
+            "name": "Parmesan Cheese",
+            "description": "Grated Parmesan cheese"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 9,
+        "fields": {
+            "name": "Tomatoes",
+            "description": "Fresh tomatoes"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 10,
+        "fields": {
+            "name": "Mozzarella Cheese",
+            "description": "Fresh mozzarella cheese"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 11,
+        "fields": {
+            "name": "Basil",
+            "description": "Fresh basil leaves"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 12,
+        "fields": {
+            "name": "Flour",
+            "description": "All-purpose flour"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 13,
+        "fields": {
+            "name": "Cocoa Powder",
+            "description": "Unsweetened cocoa powder"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 14,
+        "fields": {
+            "name": "Salmon",
+            "description": "Fresh salmon fillet"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 15,
+        "fields": {
+            "name": "Vegetables",
+            "description": "Mixed seasonal vegetables"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 16,
+        "fields": {
+            "name": "Potatoes",
+            "description": "Fresh potatoes"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 17,
+        "fields": {
+            "name": "Apples",
+            "description": "Fresh apples"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 18,
+        "fields": {
+            "name": "Cinnamon",
+            "description": "Ground cinnamon"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 19,
+        "fields": {
+            "name": "Beef Patty",
+            "description": "Juicy beef patty"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 20,
+        "fields": {
+            "name": "Lettuce",
+            "description": "Fresh lettuce"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 21,
+        "fields": {
+            "name": "Cheese",
+            "description": "Cheddar cheese"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 22,
+        "fields": {
+            "name": "Chicken Breast",
+            "description": "Grilled chicken breast"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 23,
+        "fields": {
+            "name": "Alfredo Sauce",
+            "description": "Creamy Alfredo sauce"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 24,
+        "fields": {
+            "name": "Mixed Vegetables",
+            "description": "Fresh mixed vegetables"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 25,
+        "fields": {
+            "name": "Stir-fry Sauce",
+            "description": "Savory stir-fry sauce"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 26,
+        "fields": {
+            "name": "Cream Cheese",
+            "description": "Rich cream cheese"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 27,
+        "fields": {
+            "name": "Graham Crackers",
+            "description": "Crushed graham crackers"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 28,
+        "fields": {
+            "name": "Vegetables",
+            "description": "Mixed fresh vegetables"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 29,
+        "fields": {
+            "name": "Pasta",
+            "description": "Short pasta"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 30,
+        "fields": {
+            "name": "Chocolate",
+            "description": "Dark chocolate"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 31,
+        "fields": {
+            "name": "Whipped Cream",
+            "description": "Fresh whipped cream"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 32,
+        "fields": {
+            "name": "Lobster",
+            "description": "Fresh lobster"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 33,
+        "fields": {
+            "name": "Cream",
+            "description": "Heavy cream"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 34,
+        "fields": {
+            "name": "Cream",
+            "description": "Heavy cream"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 35,
+        "fields": {
+            "name": "Gelatin",
+            "description": "Unflavored gelatin"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 36,
+        "fields": {
+            "name": "Shrimp",
+            "description": "Fresh shrimp"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 37,
+        "fields": {
+            "name": "Garlic",
+            "description": "Fresh garlic"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 38,
+        "fields": {
+            "name": "Filo Pastry",
+            "description": "Thin layers of filo pastry"
+        }
+    },
+    {
+        "model": "kitcherapp.ingredient",
+        "pk": 39,
+        "fields": {
+            "name": "Nuts",
+            "description": "Chopped nuts"
+        }
+    }
+]
