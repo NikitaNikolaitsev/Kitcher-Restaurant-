@@ -7,7 +7,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from kitcherapp.forms import (
     CookCreateForm,
-    DishSearchForm,
     CookSearchForm,
     DishForm,
     DishSearchForm, DishTypeForm,
@@ -99,19 +98,18 @@ class MenuView(generic.ListView):
     model = Dish
     template_name = "kitcher/menu/menu_view.html"
     context_object_name = "dishes"
+    queryset = Dish.objects.all()
     paginate_by = 10
 
     def get_context_data(self, **kwargs):
         context = super(MenuView, self).get_context_data(**kwargs)
         context["dish_count"] = Dish.objects.count()
-        context["dish_all_info"] = Dish.objects.all()
         return context
 
 
 class MenuCreateView(LoginRequiredMixin, generic.edit.CreateView):
     model = Dish
     form_class = DishForm
-    fields = "__all__"
     success_url = reverse_lazy("kitcherapp:dish-create")
     template_name = "kitcher/menu/menu_create.html"
 
