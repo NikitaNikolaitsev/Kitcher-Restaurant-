@@ -44,7 +44,7 @@ class CookCreateForm(UserCreationForm):
 class DishForm(ModelForm):
     class Meta:
         model = Dish
-        fields = ("name", "description", "price",)
+        fields = "__all__"
 
     def clean_name(self):
         name = self.cleaned_data.get("name")

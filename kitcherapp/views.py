@@ -99,7 +99,7 @@ class MenuView(generic.ListView):
     template_name = "kitcher/menu/menu_view.html"
     context_object_name = "dishes"
     queryset = Dish.objects.all()
-    paginate_by = 10
+    paginate_by = 8
 
     def get_context_data(self, **kwargs):
         context = super(MenuView, self).get_context_data(**kwargs)
@@ -142,15 +142,17 @@ class StaffBaseView(LoginRequiredMixin, generic.ListView):
     model = Cook
     template_name = "kitcher/staff/staff.html"
     context_object_name = "cooks"
+    paginate_by = 8
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         cooks_by_job_title = {}
 
-        for cook in Cook.objects.all():
+        for cook in self.get_queryset():
             if cook.job_title not in cooks_by_job_title:
                 cooks_by_job_title[cook.job_title] = []
             cooks_by_job_title[cook.job_title].append(cook)
+
         context["cooks_by_job_title"] = cooks_by_job_title
         return context
 
@@ -158,6 +160,7 @@ class StaffBaseView(LoginRequiredMixin, generic.ListView):
 class StaffDetailView(LoginRequiredMixin, generic.DetailView):
     model = Cook
     template_name = 'kitcher/staff/staff_detail.html'
+
 
     def get_context_data(self, **kwargs):
         context = super(StaffDetailView, self).get_context_data(**kwargs)
