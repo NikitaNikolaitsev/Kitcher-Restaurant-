@@ -1,0 +1,128 @@
+body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+h1, h2, h3, a{
+    color: #343a40;
+}
+a:hover {
+    text-decoration: none;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    color: #007bff;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.mb-3 {
+    margin-bottom: 1rem;
+}
+
+.nav-link {
+    color: #007bff;
+}
+
+.nav-link:hover {
+    color: #0056b3;
+}
+
+/* User links and sidebar */
+.user-links {
+    margin-bottom: 20px;
+}
+
+.user-links .list-group-item {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.user-links .list-group-item.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.user-links .list-group-item a {
+    color: #007bff;
+}
+
+.user-links .list-group-item a:hover {
+    text-decoration: underline;
+}
+
+.sidebar {
+    background-color: #e9ecef;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar .nav-link {
+    color: #343a40;
+}
+
+.sidebar .nav-link:hover {
+    color: #007bff;
+}
+
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.col-md-6 {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.fixed-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    overflow-y: auto;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+.container {
+    margin-left: 260px;
+}
