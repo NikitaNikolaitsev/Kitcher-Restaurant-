@@ -10,9 +10,9 @@ from kitcherapp.models import Cook, Dish, DishType
 
 def validate_name(name: str):
     if len(name) < 3 or len(name) > 20:
-        raise ValidationError(f"Enter a valid name")
+        raise ValidationError("Enter a valid name")
     if not isinstance(name, str):
-        raise ValidationError(f"Enter a valid name")
+        raise ValidationError("Enter a valid name")
 
 
 def validate_years_of_experience(years: int):
