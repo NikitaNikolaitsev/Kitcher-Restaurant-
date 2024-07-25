@@ -6,7 +6,7 @@
     <div class="dish-details">
       <p><strong>Description:</strong> {{ dish.description }}</p>
       <p><strong>Price:</strong> ${{ dish.price }}</p>
-      <p><strong>Type:</strong> {{ dish.dish_type }}</p>
+      <p><strong>Type:</strong> {{ dish.dish_type.name }}</p>
 
       <p><strong>Ingredients:</strong></p>
       {% if dish.ingredients.exists %}
@@ -22,8 +22,8 @@
 
     {% if user.is_superuser %}
       <div class="admin-actions">
-        <a href="{% url 'kitcher:update-menu' dish.pk %}" class="btn btn-primary">Update</a>
-        <a href="{% url 'kitcher:delete-menu' dish.pk %}" class="btn btn-danger">Delete</a>
+        <a href="{% url 'kitcher:menu-update' dish.pk %}" class="btn btn-primary">Update</a>
+        <a href="{% url 'kitcher:menu-delete' dish.pk %}" class="btn btn-danger">Delete</a>
       </div>
     {% endif %}
   </div>
