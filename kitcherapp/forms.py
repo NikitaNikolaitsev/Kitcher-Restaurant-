@@ -8,10 +8,8 @@ from django.forms import ModelForm
 from kitcherapp.models import Cook, Dish, DishType
 
 
-def validate_name(name: str):
-    if len(name) < 3 or len(name) > 20:
-        raise ValidationError("Enter a valid name")
-    if not isinstance(name, str):
+def validate_name(name: str) -> None:
+    if not isinstance(name, str) or not (3 <= len(name) <= 20):
         raise ValidationError("Enter a valid name")
 
 
@@ -65,11 +63,6 @@ class DishTypeForm(forms.ModelForm):
     def clean_name(self):
         name = self.cleaned_data.get("name")
         return validate_name(name)
-
-
-"""
-SEARCH FORMS
-"""
 
 
 class DishSearchForm(forms.Form):

@@ -14,12 +14,6 @@ from kitcherapp.forms import (
 )
 from kitcherapp.models import Dish, Cook, DishType, Ingredient
 
-# Create your views here.
-
-"""
-BASIC START VIEW
-"""
-
 
 def index(request: HttpRequest) -> HttpResponse:
     """View function for the home page of the site."""
@@ -39,18 +33,19 @@ def home(request):
 def dish_search(request):
     form = DishSearchForm(request.GET)
     if form.is_valid():
-        name = form.cleaned_data.get('name')
-        min_price = form.cleaned_data.get('min_price')
-        max_price = form.cleaned_data.get('max_price')
         dishes = Dish.objects.all()
-        if name:
+
+        if name := form.cleaned_data.get('name'):
             dishes = dishes.filter(name__icontains=name)
-        if min_price is not None:
+
+        if min_price := form.cleaned_data.get('min_price') is not None:
             dishes = dishes.filter(price__gte=min_price)
-        if max_price is not None:
+
+        if max_price := form.cleaned_data.get('max_price') is not None:
             dishes = dishes.filter(price__lte=max_price)
     else:
         dishes = Dish.objects.none()
+
     return render(request, 'search/dish_search_results.html', {'dishes': dishes, 'form': form})
 
 
@@ -68,11 +63,6 @@ def cook_search(request):
     else:
         cooks = Cook.objects.none()
     return render(request, 'search/cook_search_results.html', {'cooks': cooks, 'form': form})
-
-
-"""
-MENU START VIEW
-"""
 
 
 class MenuView(generic.ListView):
@@ -112,11 +102,6 @@ class DishDetailView(generic.DetailView):
     model = Dish
     queryset = Dish.objects.all().prefetch_related("cooks")
     template_name = 'kitcher/menu/dish_detail.html'
-
-
-"""
-STAFF START VIEW
-"""
 
 
 class StaffBaseView(LoginRequiredMixin, generic.ListView):
@@ -164,11 +149,6 @@ class StaffDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Cook
     success_url = reverse_lazy("kitcher:staff")
     template_name = "kitcher/staff/staff_delete.html"
-
-
-"""
-DISHTYPE START VIEW
-"""
 
 
 class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
