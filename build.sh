@@ -8,8 +8,8 @@ pip install -r requirements.txt
 # Convert static asset files
 python manage.py collectstatic --no-input
 
-sudo apt-get update
-sudo apt-get install -y libpq-dev
+apt-get update
+apt-get install -y somepackage
 
 # Apply any outstanding database migrations
 python manage.py migrate
