@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', "django-insecure-d8u04*k1(z*s&q
 
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = ["127.0.0.1", "https://kitcher-restaurant.onrender.com"]
+ALLOWED_HOSTS = ["127.0.0.1", "kitcher-restaurant.onrender.com"]
 
 
 # Application definition
