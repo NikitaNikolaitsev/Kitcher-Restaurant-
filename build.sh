@@ -2,11 +2,7 @@
 # Exit on error
 set -o errexit
 
-# Update package list and install system dependencies
-apt-get update
-apt-get install -y somepackage
-
-# Modify this line as needed for your package manager (pip, poetry, etc.)
+# Install Python dependencies
 pip install -r requirements.txt
 
 # Convert static asset files
