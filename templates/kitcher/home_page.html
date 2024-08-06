@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-capitalize mb-4">Kitcher Restaurant</h1>
+
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h2>Search for Dishes</h2>
+            <form method="get" action="{% url 'kitcher:dish-search' %}">
+                {{ dish_search_form.as_p }}
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+        </div>
+         <div class="col-md-6">
+            <h2>Search for Cooks</h2>
+            <form method="get" action="{% url 'kitcher:cook-search' %}">
+                {{ cook_search_form.as_p }}
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

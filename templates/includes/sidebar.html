@@ -1,0 +1,25 @@
+<div class="container text-center">
+  <div class="sidebar bg-light p-3 fixed-sidebar">
+    <ul class="list-group">
+      {% if user.is_authenticated %}
+        <li class="list-group-item active"><a href="{{ user.get_absolute_url }}" class="username">{{ user.get_username }}</a></li>
+        <li class="list-group-item"><a href="{% url 'logout'%}?next={{ request.path }}">Logout</a></li>
+      {% else %}
+        <li class="list-group-item"><a href="{% url 'login'%}?next={{ request.path }}">Login</a></li>
+      {% endif %}
+    </ul>
+    <ul class="nav flex-column mt-3">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'kitcher:index' %}">Home page</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'kitcher:menu' %}">Menu</a>
+      </li>
+      {% if user.is_superuser %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'kitcher:staff' %}">Staff</a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+</div>

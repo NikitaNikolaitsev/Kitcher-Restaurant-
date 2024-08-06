@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center mb-4">Menu - {{ dish_count }} Dishes Available</h1>
+    {% if user.is_superuser %}
+    <div class="text-center mb-4">
+        <a href="{% url 'kitcher:dishtype-create' %}" class="btn btn-primary mx-2">Add New Dish Type</a>
+        <a href="{% url 'kitcher:menu-create' %}" class="btn btn-primary mx-2">Add New Dish</a>
+        <a href="{% url 'kitcher:ingredient-create' %}" class="btn btn-primary mx-2">Add New Ingredient</a>
+    </div>
+    {% endif %}
+    <div class="text-center mb-4">
+        <form method="get" action="{% url 'kitcher:cook-search' %}" class="d-inline-block">
+            {{ cook_search_form.as_p }}
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+    </div>
+    <div class="row">
+        {% for dish in dishes %}
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="{{ dish.get_absolute_url }}" class="text-decoration-none">{{ dish.name }}</a>
+                    </h5>
+                    <p class="card-text mb-1">Price: ${{ dish.price }}</p>
+                    <p class="card-text mb-0">Type: {{ dish.dish_type }}</p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <p class="text-center">No dishes available.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

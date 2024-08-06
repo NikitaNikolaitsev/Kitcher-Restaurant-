@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Cook Search Results</h1>
+    <form method="get" action="{% url 'kitcher:cook-search' %}">
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Search Again</button>
+    </form>
+    <div class="row mt-4">
+        {% for cook in cooks %}
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ cook.first_name }} {{ cook.last_name }}</h5>
+                    <p class="card-text">Job Title: {{ cook.job_title }}</p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <p class="text-center">No cooks found.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

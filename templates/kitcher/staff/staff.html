@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center mb-4">Staff of Kitcher Restaurant</h1>
+
+    <div class="text-center mb-4">
+        {% if user.is_superuser %}
+            <a href="{% url 'kitcher:staff-create' %}" class="btn btn-primary mb-3">Add New Cook</a>
+        {% endif %}
+        <div class="d-flex justify-content-center">
+            <form method="get" action="{% url 'kitcher:cook-search' %}" class="d-flex align-items-center">
+                {{ cook_search_form.as_p }}
+                <button type="submit" class="btn btn-primary ml-2">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        {% for job_title, cooks in cooks_by_job_title.items %}
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h2 class="card-title">{{ job_title }}</h2>
+                    <ul class="list-group list-group-flush">
+                        {% for cook in cooks %}
+                        <li class="list-group-item">
+                            <a href="{{ cook.get_absolute_url }}">{{ cook.first_name }} {{ cook.last_name }}</a>
+                        </li>
+                        {% empty %}
+                        <li class="list-group-item">No cooks for this position.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
